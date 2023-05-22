@@ -18,20 +18,19 @@ public class Main {
         int n = matrix.length;
 
         for (int layer = 0; layer < n / 2; layer++) {
-            int first = layer;
             int last = n - 1 - layer;
 
-            for (int i = first; i < last; i++) {
-                int offset = i - first;
+            for (int i = layer; i < last; i++) {
+                int offset = i - layer;
 
                 // Save top element
-                int top = matrix[first][i];
+                int top = matrix[layer][i];
 
                 // Left -> Top
-                matrix[first][i] = matrix[last - offset][first];
+                matrix[layer][i] = matrix[last - offset][layer];
 
                 // Bottom -> Left
-                matrix[last - offset][first] = matrix[last][last - offset];
+                matrix[last - offset][layer] = matrix[last][last - offset];
 
                 // Right -> Bottom
                 matrix[last][last - offset] = matrix[i][last];
@@ -40,7 +39,5 @@ public class Main {
                 matrix[i][last] = top;
             }
         }
-
-        return;
     }
 }
